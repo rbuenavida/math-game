@@ -10,7 +10,7 @@ class Summary extends React.PureComponent {
     render() {
       const {show, score, onPlayAgain} = this.props;
       return (
-        <div class={`summary ${!this.mounted ? 'hidden' : ''} animated ${show ? 'bounceInDown' : 'bounceOutUp'}`}>
+        <div className={`summary ${!this.mounted ? 'hidden' : ''} animated ${show ? 'bounceInDown' : 'bounceOutUp'}`}>
           <div className='title'>
             <div className='big'>GOOD JOB!</div>
             Your Score is:

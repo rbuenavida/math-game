@@ -2,6 +2,13 @@
 
 Inspire by https://codepen.io/ykadosh/pen/NBQRQj
 
+## TODO
+Update to functional components
+Update to TypeScript
+Maybe move to styled components instead of scss
+Add some other types of test, multiplication, subtraction
+Reference the original author of the game
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

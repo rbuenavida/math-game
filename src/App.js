@@ -7,7 +7,7 @@ import Expression from './components/Expression'
 import Summary from './components/Summary'
 import MultipleChoice from './components/MultipleChoice';
 
-const TIME = 30; // Initial game duration, in seconds
+const TIME = 120; // Initial game duration, in seconds
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -28,6 +28,7 @@ class App extends React.PureComponent {
   getInitialStatus() {
     return {
       score: 0,
+      scoreChange: 0,
       max: 10,
       asked: 0,
       answered: 0,
@@ -56,12 +57,16 @@ class App extends React.PureComponent {
       max *= 2;
     }
     
+    const score = status.score + (max * status.multiplier)
+    const scoreChange = score - status.score
+
     this.setState({
       endTime,
       status: {
         ...status,
         multiplier: Math.min(status.multiplier + 1, 5), 
-        score: status.score + (max * status.multiplier),
+        score,
+        scoreChange,
         asked: status.asked + 1,
         answered: status.answered + 1,
         max
@@ -70,12 +75,17 @@ class App extends React.PureComponent {
   }
   
   decreaseScore() {
-    const {status} = this.state;
+    const { status } = this.state;
+
+    const score =  Math.max(0, status.score - Math.floor(status.max*0.25)) // Decrease by MAX * <Correct Answer Probability>
+    const scoreChange = score - status.score
+    
     this.setState({
       status: {
         ...status,
         multiplier: 1,
-        score: Math.max(0, status.score - Math.floor(status.max*0.25)), // Decrease by MAX * <Correct Answer Probability>
+        score,
+        scoreChange,
         asked: status.asked + 1
       }
     }); 
@@ -117,7 +127,13 @@ class App extends React.PureComponent {
     this.setState({selected: value});
     
     setTimeout(() => {
+      const { status } = this.state;
+
       this.setState({
+        status: {
+          ...status,
+          scoreChange: 0
+        },
         prev: this.state.next,
         next: this.generateProblem(this.state.status.max),
         selected: -1
