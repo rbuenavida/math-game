@@ -1,0 +1,279 @@
+$color-dark-gray: #7f8c8d;
+$color-medium-gray: #95a5a6;
+$color-light-green: #ecf0f1;
+$color-dark-blue: #2c3e50;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-green: #2ecc71;
+$color-red: #e74c3c;
+$color-yellow: #f1c40f;
+$color-torquoise: #1abc9c;
+
+$choice-width: 80px;
+$choice-height: 50px;
+$choice-spacing: 15px;
+
+.container {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  justify-content: center;
+  background-color: $color-torquoise;
+  flex: 1;
+  margin-bottom: 25px;
+  
+  .container {
+    margin-bottom: -25px;
+  }
+  
+  .timer, .score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(42, 58, 62, 0.1);
+  }
+  
+  .timer {
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border-radius: 3px;
+    
+    &.animated {
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+    
+    &.red {
+      color: $color-red;
+    }
+  }
+  
+  .status {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    background-color: $color-torquoise;
+    border: 3px solid $color-white;
+    border-radius: 50px;
+    color: $color-white;
+    position: relative;
+    padding: 0 10px;
+    
+    .status-item {
+      height: 100%;
+      border-right: 1px solid $color-white;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      
+      &:last-child {
+        border-right: none;
+      }
+    }
+    
+    .score {
+      font-size: 26px;
+    }
+    
+    .max {
+    
+    }
+    
+    .rate {
+      
+    }
+    
+    .multiplier {
+      position: absolute;
+      right: -20px;
+      top: 10px;
+      background-color: $color-yellow;
+      color: black;
+      font-size: 18px;
+      padding: 5px 8px;
+      color: $color-dark-blue;
+      transform: rotateZ(20deg);
+    }
+    
+    .change {
+      position: absolute;
+      right: -15px;
+      animation-duration: 2s;
+      background-color: white;
+      padding: 5px;
+      font-size: 0.8em;
+      
+      &.hidden {
+        visibility: hidden;
+      }
+      
+      &.positive {
+        color: $color-green;
+      }
+      
+      &.negative {
+        color: $color-red;
+      }
+    }
+  }
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  height: 40vh;
+    
+  .expression {
+    height: 80px;
+    overflow: hidden;
+    
+    &.transitioning {
+      .from, .to {
+        transition: all .5s 1s cubic-bezier(0.25, 0.1, 0, 1);
+        transform: translateY(-80px);
+      }
+    }
+    
+    .from, .to {
+      display: flex;
+      height: 80px;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(0);
+    }
+    
+    .text {
+      margin-right: 20px;
+      font-size: 52px;
+    }
+    
+    .box {
+      border: 2px dashed $color-dark-gray;
+      width: $choice-width - 2px;
+      height: $choice-height - 2px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: $color-dark-gray;
+    }
+  }
+}
+
+.multiple-choice {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  
+  .choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-dark-gray;
+    color: $color-white;
+    width: $choice-width;
+    height: $choice-height;
+    border-radius: 3px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: $choice-spacing;
+    box-shadow: 0px 4px 0px rgb(70, 85, 86);
+    
+    &:last-child {
+      margin-right: 0;
+    }
+    
+    &.positive {
+      background-color: $color-green;
+    }
+    
+    &.negative {
+      background-color: $color-red;
+    }
+  }
+}
+
+.footer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: $color-torquoise;
+  margin-top: 25px;
+  
+  .container {
+    margin-top: -$choice-height / 2;
+  }
+}
+
+.summary {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: $color-white;
+  
+  &.hidden {
+    visibility: hidden;
+  }
+    
+  .badge {
+    position: relative;
+    margin: 15px;
+    
+    svg {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .score {
+      font-size: 28px;
+      color: $color-white;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+  
+  .title {
+    text-align: center;
+    color: $color-medium-gray;
+
+    .big {
+      font-size: 24px;
+      color: $color-dark-blue;
+    }
+  }
+
+  .button {
+    font-size: 20px;
+    background-color: $color-torquoise;
+    color: $color-white;
+    padding: 5px 10px;
+    font-weight: 400;
+    border-radius: 3px;
+    box-shadow: 0 3px 0 $color-dark-blue;
+    cursor: pointer;
+  }
+}
