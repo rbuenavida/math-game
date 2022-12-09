@@ -1,0 +1,14 @@
+@value color-dark-gray: #7f8c8d;
+@value color-medium-gray: #95a5a6;
+@value color-light-green: #ecf0f1;
+@value color-dark-blue: #2c3e50;
+@value color-white: #ffffff;
+@value color-black: #000000;
+@value color-green: #2ecc71;
+@value color-red: #e74c3c;
+@value color-yellow: #f1c40f;
+@value color-torquoise: #1abc9c;
+
+@value choice-width: 80px;
+@value choice-height: 50px;
+@value choice-spacing: 15px;

@@ -7,7 +7,7 @@ import Expression from './components/Expression'
 import Summary from './components/Summary'
 import MultipleChoice from './components/MultipleChoice';
 
-const TIME = 120; // Initial game duration, in seconds
+const TIME = 15; // Initial game duration, in seconds
 
 class App extends React.PureComponent {
   constructor(props) {

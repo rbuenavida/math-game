@@ -1,16 +1,21 @@
 import React from 'react'
+import styles from './MultipleChoice.module.css'
 
-class MultipleChoice extends React.PureComponent {
-    render() {
-      const {values, selected, correct, onClick} = this.props;
-      return (
-        <div className='multiple-choice'>
-          {values.map(res => (
-            <div className={`choice animated ${selected === res ? (correct ? 'tada positive' : 'negative wobble') : ''}`} onClick={() => onClick(res)}>{res}</div>
-          ))}
+const MultipleChoice = (props) => {
+  const { values, selected, correct, onClick } = props
+  const classes = correct ? `tada ${styles.positive}` : `${styles.negative} wobble`
+
+  return (
+    <div className={`${styles.multipleChoice}`}>
+      {values.map(res => (
+        <div
+          className={`${styles.choice} animated ${selected === res ? classes : ''}`}
+          onClick={() => onClick(res)}>
+          {res}
         </div>
-      );
-    }
-  }
+      ))}
+    </div>
+  )
+}
 
 export default MultipleChoice

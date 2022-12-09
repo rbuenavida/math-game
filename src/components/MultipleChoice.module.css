@@ -1,0 +1,35 @@
+@value colors: "../colors.module.css";
+@value color-green, color-red, color-dark-gray, color-white, choice-width, choice-height, choice-spacing from colors;
+
+.multipleChoice {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color-dark-gray;
+    color: color-white;
+    width: choice-width;
+    height: choice-height;
+    border-radius: 3px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: choice-spacing;
+    box-shadow: 0px 4px 0px rgb(70, 85, 86);
+}
+
+.choice:last-child {
+    margin-right: 0;
+}
+
+.positive {
+    background-color: color-green;
+}
+
+.negative {
+    background-color: color-red;
+}
