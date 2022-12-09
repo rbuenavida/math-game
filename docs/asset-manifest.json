@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/math-game/static/css/main.ca4402ff.css",
-    "main.js": "/math-game/static/js/main.7285ac02.js",
+    "main.css": "/math-game/static/css/main.1dcbe98e.css",
+    "main.js": "/math-game/static/js/main.41379505.js",
     "static/js/787.660b7a05.chunk.js": "/math-game/static/js/787.660b7a05.chunk.js",
     "index.html": "/math-game/index.html",
-    "main.ca4402ff.css.map": "/math-game/static/css/main.ca4402ff.css.map",
-    "main.7285ac02.js.map": "/math-game/static/js/main.7285ac02.js.map",
+    "main.1dcbe98e.css.map": "/math-game/static/css/main.1dcbe98e.css.map",
+    "main.41379505.js.map": "/math-game/static/js/main.41379505.js.map",
     "787.660b7a05.chunk.js.map": "/math-game/static/js/787.660b7a05.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ca4402ff.css",
-    "static/js/main.7285ac02.js"
+    "static/css/main.1dcbe98e.css",
+    "static/js/main.41379505.js"
   ]
 }
