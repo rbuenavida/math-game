@@ -1,0 +1,92 @@
+@value colors: "../colors.module.css";
+@value color-torquoise, color-red, color-white, color-yellow, color-dark-blue, color-green from colors;
+
+.header {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    justify-content: center;
+    background-color: color-torquoise;
+    flex: 1;
+    margin-bottom: 25px;
+}
+
+.container {
+    composes: container from '../App.module.css';
+    margin-bottom: -25px;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(42, 58, 62, 0.1);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    background-color: color-torquoise;
+    border: 3px solid color-white;
+    border-radius: 50px;
+    color: color-white;
+    position: relative;
+    padding: 0 10px;
+}
+
+.statusItem {
+    height: 100%;
+    border-right: 1px solid color-white;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.statusItem:last-child {
+    border-right: none;
+}
+
+.multiplier {
+    position: absolute;
+    right: -20px;
+    top: 10px;
+    background-color: color-yellow;
+    color: black;
+    font-size: 18px;
+    padding: 5px 8px;
+    color: color-dark-blue;
+    transform: rotateZ(20deg);
+}
+
+.max {   
+}
+
+.rate {
+}
+
+.score {
+    font-size: 26px;
+}
+
+.change {
+    position: absolute;
+    right: -15px;
+    animation-duration: 2s;
+    background-color: white;
+    padding: 5px;
+    font-size: 0.8em;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.positive {
+    color: color-green;
+}
+
+.negative {
+    color: color-red;
+}
+

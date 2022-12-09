@@ -1,0 +1,24 @@
+@value colors: "../colors.module.css";
+@value color-red from colors;
+
+.timer {
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border-radius: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(42, 58, 62, 0.1);
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.red {
+    color: color-red;
+}

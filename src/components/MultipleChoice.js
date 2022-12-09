@@ -6,7 +6,7 @@ const MultipleChoice = (props) => {
   const classes = correct ? `tada ${styles.positive}` : `${styles.negative} wobble`
 
   return (
-    <div className={`${styles.multipleChoice}`}>
+    <div className={styles.multipleChoice}>
       {values.map(res => (
         <div
           className={`${styles.choice} animated ${selected === res ? classes : ''}`}

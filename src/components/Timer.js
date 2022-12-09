@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Timer.module.css'
 
 class Timer extends React.PureComponent {
     constructor(props) {
@@ -50,7 +51,7 @@ class Timer extends React.PureComponent {
       const {m, s} = this.state;
       const remaining = m*60 + s;
       return (
-        <div className={`timer ${remaining < 5 && remaining > 0? 'animated bounceIn red': ''}`} ref={ref => this.ref = ref}>{m > 9 ? '' : '0'}{m} : {s > 9 ? '' : '0'}{s}</div>
+        <div className={`${styles.timer} ${remaining < 5 && remaining > 0? `${styles.animated} bounceIn ${styles.red}`: ''}`} ref={ref => this.ref = ref}>{m > 9 ? '' : '0'}{m} : {s > 9 ? '' : '0'}{s}</div>
       );
     }
   }
