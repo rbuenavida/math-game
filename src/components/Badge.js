@@ -1,11 +1,12 @@
 import React from 'react'
+import styles from './Badge.module.css'
 
 const Badge = (props) => {
   const { score } = props
   return (
-    <div className='badge'>
-      <div className='score'>{score}</div>
-      <svg viewBox="0 0 31.531 31.531">
+    <div className={styles.badge}>
+      <div className={styles.score}>{score}</div>
+      <svg className={styles.svg} viewBox="0 0 31.531 31.531">
         <g>
           <g>
             <path fill="#f5c30e" d="M11.872,24.961l-2.539,0.412c-0.711,0.114-1.4-0.058-1.961-0.468c-0.558-0.401-0.94-1.031-1.043-1.72l-0.223-1.482

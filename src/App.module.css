@@ -1,5 +1,50 @@
+@value colors: "./colors.module.css";
+@value color-torquoise, choice-height from colors;
+
 .container {
     width: 400px;
     display: flex;
     justify-content: space-between;
+}
+
+.gameContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+  
+.body {
+    display: flex;
+    align-items: center;
+    height: 40vh;
+}
+
+.footer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: color-torquoise;
+    margin-top: 25px;
+}
+
+.footerContainer {
+    margin-top: calc(choice-height * -1 / 2);
+    composes: container;   
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

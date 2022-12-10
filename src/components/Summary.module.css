@@ -1,0 +1,38 @@
+@value colors: "../colors.module.css";
+@value color-white, color-torquoise, color-dark-blue, color-medium-gray from colors;
+
+.summary {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background-color: color-white;
+}
+
+.title {
+    text-align: center;
+    color: color-medium-gray;
+}
+
+.title .big {
+    font-size: 24px;
+    color: color-dark-blue;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.button {
+    font-size: 20px;
+    background-color: color-torquoise;
+    color: color-white;
+    padding: 5px 10px;
+    font-weight: 400;
+    border-radius: 3px;
+    box-shadow: 0 3px 0 color-dark-blue;
+    cursor: pointer;
+}

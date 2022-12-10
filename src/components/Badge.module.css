@@ -1,0 +1,22 @@
+@value colors: "../colors.module.css";
+@value color-white from colors;
+
+.badge {
+    position: relative;
+    margin: 15px;
+}
+
+svg {
+    width: 200px;
+    height: 200px;
+}
+
+.score {
+    font-size: 28px;
+    color: color-white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

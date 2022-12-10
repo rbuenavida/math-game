@@ -1,13 +1,13 @@
 import React from 'react'
 // import logo from './logo.svg';
-import './App.scss';
+import styles from './App.module.css';
 
 import Header from './components/Header'
 import Expression from './components/Expression'
 import Summary from './components/Summary'
 import MultipleChoice from './components/MultipleChoice';
 
-const TIME = 15; // Initial game duration, in seconds
+const TIME = 30; // Initial game duration, in seconds
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -167,20 +167,20 @@ class App extends React.PureComponent {
     } = this.state;
 
     return (
-      <div className='game-container'>
+      <div className={styles.gameContainer}>
         <Header 
           status={status} 
           endTime={endTime} 
           onTimerEnd={this.handleOnTimerEnd}/>
-        <div className='body'>
+        <div className={styles.body}>
           <Expression 
             from={`${prev.a} + ${prev.b} = `} 
             to={`${next.a} + ${next.b} = `} 
             transitioning={selected !== -1}
           />
         </div>
-        <div className='footer'>
-          <div className='container'>
+        <div className={styles.footer}>
+          <div className={styles.footerContainer}>
             <MultipleChoice 
               values={prev.choices} 
               selected={selected} 
