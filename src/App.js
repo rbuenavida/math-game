@@ -7,6 +7,8 @@ import Expression from './components/Expression'
 import Summary from './components/Summary'
 import MultipleChoice from './components/MultipleChoice';
 
+import problemTypes, { OPERATORS } from './services/ProblemTypes';
+
 const TIME = 30; // Initial game duration, in seconds
 
 const App = () => {
@@ -19,50 +21,21 @@ const App = () => {
     multiplier: 1
   }
 
-  const shuffle = (a) => {
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a
-  }
-  
-  const getChoices = (a, b, max) => {
-    const result = a + b
-    const choices = [result]
-    
-    while(choices.length < 4) {
-      const choice = randomNumber(max)
-      if(!choices.includes(choice)) {
-        choices.push(choice)
-      }
-    }
-    return shuffle(choices)
-  }
-
-  const randomNumber = (max) => {
-    return Math.floor(Math.random()*max);
-  }
-  
-  const generateProblem = (max) => {
-    const a = randomNumber(max)
-    const b = randomNumber(max - a)
-    return { a, b, choices: getChoices(a, b, max) }
-  }
+  const problemType = problemTypes[OPERATORS.MIXED]()
 
   const [ state, setState ] = useState({
     status: { ...initialStatus },
     selected: -1,
     showSummary: false,
     endTime: Date.now() + TIME * 1000,
-    prev: generateProblem(initialStatus.max),
-    next: generateProblem(initialStatus.max)
+    prev: problemType.generateProblem(initialStatus.max),
+    next: problemType.generateProblem(initialStatus.max)
   })
 
   useEffect(() => {
-    if (state.status.scoreChange !== 0) {
+    if (state.selected !== -1) {
       setTimeout(() => {
-        console.log('settimeout state', state)
+        console.log('DOING SETTIMEOUT', state)
         const { status, next } = state
         setState({
           ...state,
@@ -71,7 +44,7 @@ const App = () => {
             scoreChange: 0
           },
           prev: next,
-          next: generateProblem(status.max),
+          next: problemType.generateProblem(status.max),
           selected: -1
         });
       }, 1500)
@@ -79,7 +52,7 @@ const App = () => {
   }, [state])
 
   const increaseScore = (selected) => {
-    console.log('increaseScore')
+    console.log('DOING increaseScore')
     const { status } = state;
     let endTime = state.endTime;
     let max = status.max;
@@ -110,12 +83,13 @@ const App = () => {
   }
   
   const decreaseScore = (selected) => {
-    console.log('decreaseScore')
+    console.log('DOING decreaseScore')
     const { status } = state;
 
     // Decrease by MAX * <Correct Answer Probability>
-    const score =  Math.max(0, status.score - Math.floor(status.max * 0.25)) 
+    const score =  Math.max(0, status.score - Math.floor(status.max * 0.25))
     const scoreChange = score - status.score
+    console.log(score, scoreChange)
     
     setState({
       ...state,
@@ -130,12 +104,11 @@ const App = () => {
     }); 
   }
 
-  const handleOnClick = value => {
-    const { prev: {a, b}, selected } = state
-    
+  const handleOnClick = (value, prev) => {
+    const { selected } = state
     if(selected !== -1) return
     
-    if(value === a + b) {
+    if(value === prev.answer) {
       increaseScore(value)
     }
     else {
@@ -156,9 +129,9 @@ const App = () => {
       ...state,
       status,
       showSummary: false,
-      endTime: Date.now() + TIME*1000,
-      prev: generateProblem(status.max),
-      next: generateProblem(status.max)
+      endTime: Date.now() + TIME * 1000,
+      prev: problemType.generateProblem(status.max),
+      next: problemType.generateProblem(status.max)
     })
   }
 
@@ -179,8 +152,8 @@ const App = () => {
         onTimerEnd={handleOnTimerEnd}/>
       <div className={styles.body}>
         <Expression 
-          from={`${prev.a} + ${prev.b} = `} 
-          to={`${next.a} + ${next.b} = `} 
+          from={prev.question} 
+          to={next.question} 
           transitioning={selected !== -1}
         />
       </div>
@@ -189,8 +162,8 @@ const App = () => {
           <MultipleChoice 
             values={prev.choices} 
             selected={selected} 
-            onClick={handleOnClick} 
-            correct={selected === prev.a + prev.b}
+            onClick={value => handleOnClick(value, prev)} 
+            correct={selected === prev.answer}
           />
         </div>
       </div>
